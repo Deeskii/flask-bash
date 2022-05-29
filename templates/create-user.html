@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+<br/>
+{% block content %}
+	<center>
+		<h1>Create Account</h1>
+
+		<form method="POST">
+			{{ form.username.label(
+				class="form-label"
+			)}}
+			{{ form.username(
+				class="form-control"
+			) }}
+			<br/>
+			{{ form.password.label(
+				class="form-label"
+			) }}
+			{{ form.password(
+				class="form-control"
+			) }}
+			<br/>
+			{{ form.submit(
+				class="btn btn-primary"
+			) }}
+		</form>
+	</center>
+{% endblock %}
