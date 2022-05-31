@@ -1,8 +1,54 @@
 {% extends 'base.html'%}
-
 <br/>
 {% block content %}
 	<center>
-		<h1>Login</h1>
+	{% for message in get_flashed_messages() %}
+		{% for field, errors in form.errors.items() %}
+			<div class="alert alert-danger alert-dismissible fade show" role="alert"></div>
+			{{ ', '.join(errors) }}
+			
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	{% endfor %}
+	{{ message }}
+{% endfor %}
+<h1>Login</h1>
+<div class="d-flex justify-content-center">
+
+	<form method="POST">
+		<div class="form-group row">
+			{{ form.csrf_token() }}
+			
+			
+			<div class="col-auto">
+				{{ form.username(
+				class="form-control", placeholder="username"
+				) }}
+			</div>
+		</div>
+		<br/>
+		<div class="form-group row align-items-center">
+			
+			<div class="col-auto">
+				{{ form.password(
+				class="form-control", placeholder="password") }}
+			</div>
+		</div>
+		<br/>
+		<div class="col-auto">
+			{{ form.submit(
+			class="btn btn-primary", style="width: 90%"
+			) }}
+		</div>
+		<br/>
+
+	</form>
+	<div class="">
+		<a href="{{ url_for('create_user') }}"><button class="btn btn-outline-secondary" style="width: 80%">Create Account</button><a/>
+	</div>
+		
+	</div>
 	</center>
 {% endblock %}

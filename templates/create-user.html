@@ -1,28 +1,49 @@
 {% extends 'base.html'%}
-
 <br/>
 {% block content %}
+	{% for message in get_flashed_messages() %}
+		{% for field, errors in form.errors.items() %}
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				
+				<!-- <strong>{{ message }}</strong> -->
+				{{ ', '.join(errors) }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		{% endfor %}
+	{% endfor %}
 	<center>
-		<h1>Create Account</h1>
-
+	<h1>Create Account</h1>
+	<div class="shadow p-3 mb-5 bg-body rounded">
 		<form method="POST">
-			{{ form.username.label(
-				class="form-label"
-			)}}
+			{{ form.csrf_token() }}
 			{{ form.username(
-				class="form-control"
+			class="form-control", placeholder="username"
 			) }}
 			<br/>
-			{{ form.password.label(
-				class="form-label"
+			{{ form.email(
+			class="form-control", placeholder="email"
 			) }}
+			<br/>
 			{{ form.password(
-				class="form-control"
+			class="form-control", placeholder="password"
 			) }}
 			<br/>
-			{{ form.submit(
-				class="btn btn-primary"
+			{{ form.confirm_password(class="form-control", placeholder="confirm password") }}
+			<br/>
+			{{ form.create_account(
+			class="btn btn-primary"
 			) }}
 		</form>
+	</div>
+	<br/>
+	<table class="table table-hover table-bordered table-striped">
+	{% for our_user in our_users %}
+	<tr>
+		<td>{{ our_user.id }} - {{ our_user.username }} - {{ our_user.email }}</td>
+	</tr>
+	{% endfor %}
+</table>
 	</center>
 {% endblock %}
