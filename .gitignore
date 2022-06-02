@@ -4,3 +4,5 @@ virt/
 __pycache__/
 
 .env
+
+create_user_db.py

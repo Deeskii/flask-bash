@@ -1,12 +1,16 @@
 {% extends 'base.html'%}
-
 {% block content %}
-<center>
-    <div>
-        <h1>{{ bash_title|safe|capitalize }}</h1>
-        <h6>By: {{ username|safe|capitalize }}</h6>
-        <p>{{ bash|capitalize|safe }}</p>
-    </div>
-</center>
-
-{% endblock %}
+<br/><br/><br/>
+    <center>
+    {% for bash in bashes %}
+        <div class="card w-50">
+            <div class="card-header">
+                <h3 class="card-title">{{ bash.bash_title|safe|capitalize }}</h3>
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0"> {{ bash.bash_descr|capitalize|safe }}</blockquote>
+            </div>
+        </div> <br/><br/><br/>
+        {%  endfor %}
+        </center>
+    {% endblock %}

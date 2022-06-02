@@ -13,35 +13,30 @@
 			</div>
 		{% endfor %}
 	{% endfor %}
-	<center>
-	<h1>Create Account</h1>
-	<div class="shadow p-3 mb-5 bg-body rounded bg-dark w-50">
+	<br/><br/><br/>
+	<center class="d-block">
+	<h1>Create Bash</h1>
+	<div class="shadow p-3 mb-5 bg-body rounded w-75 bg-dark">
 		<form method="POST">
 			{{ form.csrf_token() }}
-			{{ form.username(
-			class="form-control", placeholder="username"
+			{{ form.bash_title(
+			class="form-control", placeholder="Title"
 			) }}
 			<br/>
-			{{ form.email(
-			class="form-control", placeholder="email"
+			{{ form.bash_descr(
+			class="form-control", placeholder="Start Bashing!",style="height: 25vh;"
 			) }}
 			<br/>
-			{{ form.password(
-			class="form-control", placeholder="password"
-			) }}
-			<br/>
-			{{ form.confirm_password(class="form-control", placeholder="confirm password") }}
-			<br/>
-			{{ form.create_account(
+			{{ form.create_bash(
 			class="btn btn-primary"
 			) }}
 		</form>
 	</div>
 	<br/>
-	<table class="table table-hover table-bordered table-striped w-50">
-	{% for our_user in our_users %}
+	<table class="table table-hover table-bordered table-striped">
+	{% for bash in bahes %}
 	<tr>
-		<td>{{ our_user.id }} - <a href="{{ url_for('update_user', id=our_user.id) }}">{{ our_user.username }}</a> -{{ our_user.email }}</td>
+		<td>{{ bash.id }} - <a href="{{ url_for('update_bash', id=bash.id) }}">{{ bash.bash_title }}</a> -{{ bash.bash_descr }}</td>
 	</tr>
 	{% endfor %}
 </table>
